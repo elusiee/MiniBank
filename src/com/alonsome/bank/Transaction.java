@@ -9,7 +9,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.UUID;
 
 public class Transaction {
-    private String transactionID;
+    private final String transactionID;
     private double amount;
     private TransactionType type;
     private double balance;
