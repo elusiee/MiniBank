@@ -1,0 +1,33 @@
+[ {
+  "transactionID" : "67cae3ab-65cd-4010-a663-edfeeb4b712a",
+  "amount" : 100.0,
+  "user" : "Alonsome",
+  "type" : "CREDIT",
+  "balance" : 7000.0,
+  "status" : "SUCCESS",
+  "createdAt" : "2026-03-30 12:09:25 am"
+}, {
+  "transactionID" : "194e4913-6fbc-4f45-9ac3-275f06f6ca59",
+  "amount" : 300.0,
+  "user" : "Alonsome",
+  "type" : "CREDIT",
+  "balance" : 7300.0,
+  "status" : "SUCCESS",
+  "createdAt" : "2026-03-30 11:41:43 am"
+}, {
+  "transactionID" : "757f7c7b-e911-49ee-a11f-dc6ab8e8cc03",
+  "amount" : 900.0,
+  "user" : "Alonsome",
+  "type" : "DEBIT",
+  "balance" : 6400.0,
+  "status" : "SUCCESS",
+  "createdAt" : "2026-03-30 11:42:53 am"
+}, {
+  "transactionID" : "888bc627-9d96-4b3f-ae11-dfe667dc296e",
+  "amount" : 500.0,
+  "user" : "Emosnola",
+  "type" : "CREDIT",
+  "balance" : 5500.0,
+  "status" : "SUCCESS",
+  "createdAt" : "2026-03-30 11:47:59 am"
+} ]

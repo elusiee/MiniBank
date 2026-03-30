@@ -1,5 +1,7 @@
 package com.alonsome.bank;
 
+import com.alonsome.auth.User;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import enums.TransactionStatus;
 import enums.TransactionType;
 
@@ -9,8 +11,9 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.util.UUID;
 
 public class Transaction {
-    private final String transactionID;
+    private String transactionID;
     private double amount;
+    private String user;
     private TransactionType type;
     private double balance;
     private TransactionStatus status;
@@ -18,9 +21,12 @@ public class Transaction {
 
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm:ss a");
 
-    public Transaction(double amount, TransactionType type, double balance, TransactionStatus status) {
-        this.transactionID = getTransactionID();
+    public Transaction(){}
+
+    public Transaction(double amount, String user, TransactionType type, double balance, TransactionStatus status) {
+        this.transactionID = generateTransactionID();
         this.amount = amount;
+        this.user = user;
         this.type = type;
         this.balance = balance;
         this.status = status;
@@ -31,9 +37,38 @@ public class Transaction {
         return "\n=== TRANSACTION HISTORY ===" + "\nTransaction ID: " + transactionID + "\nAmount: " + amount + "\nTransaction Type: " + type + "\nBalance Remaining: " + balance + "\nStatus: " + status + "\nTime: " +  createdAt;
     }
 
-    public static String getTransactionID() {
+    public static String generateTransactionID() {
         return UUID.randomUUID().toString();
     }
+
+    public String getUser() {
+        return user;
+    }
+
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+
+    public String getTransactionID() {
+        return transactionID;
+    }
+
+    public TransactionType getType() {
+        return type;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public TransactionStatus getStatus() {
+        return status;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
     public double getAmount() {
         return amount;
     }
@@ -54,6 +89,7 @@ public class Transaction {
         this.status = TransactionStatus.SUCCESS;
     }
 
+    @JsonIgnore
     public boolean isSuccessful() {
         return this.status == TransactionStatus.SUCCESS;
     }

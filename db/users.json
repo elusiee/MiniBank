@@ -1,0 +1,30 @@
+[ {
+  "username" : "Alonsome",
+  "pin" : "03ac674216f3e15c761ee1a5e255f067953623c8b388b4459e13f978d7c846f4",
+  "balance" : 6400.0,
+  "bankAccount" : null
+}, {
+  "username" : "Emosnola",
+  "pin" : "edee29f882543b956620b26d0ee0e7e950399b1c4222f5de05e06425b4c995e9",
+  "balance" : 5500.0,
+  "bankAccount" : null
+}, {
+  "username" : "Alon-Emos",
+  "pin" : "72f93cdffdd25a0cc5ed855d2388671b7e715ca09a8c844a90cb3e4e7398fc45",
+  "balance" : 6500.0,
+  "bankAccount" : null
+}, {
+  "username" : "Emrys",
+  "pin" : "cb46cf928f8527e2c433c2ce8b0a4a400fad8e136904a54aa2d7bc4d891ed4b1",
+  "balance" : 1000.0,
+  "bankAccount" : {
+    "balance" : 1000.0
+  }
+}, {
+  "username" : "Lonewolf",
+  "pin" : "318aee3fed8c9d040d35a7fc1fa776fb31303833aa2de885354ddf3d44d8fb69",
+  "balance" : 1500.0,
+  "bankAccount" : {
+    "balance" : 1500.0
+  }
+} ]

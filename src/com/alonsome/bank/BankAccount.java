@@ -3,8 +3,8 @@ package com.alonsome.bank;
 public class BankAccount {
 
     private double balance;
-    private int pin;
 
+    public BankAccount(){}
     public BankAccount(double balance) {
         this.balance = balance;
     }
@@ -25,7 +25,7 @@ public class BankAccount {
             System.out.println("Invalid withdrawal amount: " + amount);
         }else{
             balance -= amount;
-            System.out.println(amount + " successfully deposited");
+            System.out.println(amount + " successfully withdrawn");
         }
     }
 
@@ -33,14 +33,7 @@ public class BankAccount {
         return balance;
     }
 
-    public void createPin(int pin){
-        this.pin = pin;
+    public void setBalance(double balance) {
+        this.balance = balance;
     }
-
-    public int getPin() {
-        return pin;
-    }
-//    public void setBalance(double balance) {
-//        this.balance = balance;
-//    }
 }
