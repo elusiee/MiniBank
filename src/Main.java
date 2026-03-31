@@ -99,63 +99,97 @@ public class Main {
             System.out.print("Please enter your choice: ");
 
             int authChoice = sc.nextInt();
-            Transaction tx;
+            //Transaction tx;
 
             switch (authChoice) {
                 case 1:
-                    System.out.println("Balance is " + acc.getBalance());
-                    break;
+                    Thread balanceThread = new Thread(() -> System.out.println("Balance is " + acc.getBalance()));
+                    balanceThread.start();
 
-                case 2:
                     try {
-                        System.out.print("Enter amount to deposit: ");
-                        double amount = sc.nextDouble();
-                        acc.deposit(amount);
-
-                        tx = new Transaction(
-                                amount,
-                                user.getUsername(),
-                                TransactionType.CREDIT,
-                                acc.getBalance(),
-                                TransactionStatus.SUCCESS
-                        );
-
-                        jsonHandler.updateUser(user.getUsername(), acc.getBalance());
-                        jsonHandler.saveToFile(tx);
-
-                        System.out.println("Deposit successful. New balance: " + acc.getBalance());
-                    } catch (Exception e) {
-                        System.out.println("Something went wrong: " + e.getMessage());
+                        balanceThread.join();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        System.out.println("Balance thread interrupted.");
                     }
                     break;
+                case 2:
+                    System.out.print("Enter amount to deposit: ");
+                    double depositAmount = sc.nextDouble();
 
-                case 3:
-                    try {
-                        System.out.print("Please enter your pin: ");
-                        String wtPin = sc.next();
+                    Thread depositThread = new Thread(() -> {
+                        try {
+                            acc.deposit(depositAmount);
 
-                        if (wtPin.equals(user.getPin())) {
-                            System.out.print("Enter amount to withdraw: ");
-                            double withdraw = sc.nextDouble();
-                            acc.withdraw(withdraw);
-
-                            tx = new Transaction(
-                                    withdraw,
+                            Transaction tx1 = new Transaction(
+                                    depositAmount,
                                     user.getUsername(),
-                                    TransactionType.DEBIT,
+                                    TransactionType.CREDIT,
                                     acc.getBalance(),
                                     TransactionStatus.SUCCESS
                             );
 
                             jsonHandler.updateUser(user.getUsername(), acc.getBalance());
-                            jsonHandler.saveToFile(tx);
+                            jsonHandler.saveToFile(tx1);
 
-                            System.out.println("Withdrawal successful. New balance: " + acc.getBalance());
-                        } else {
-                            System.out.println("Invalid pin, please try again");
+                            System.out.println("Deposit successful. New balance: " + acc.getBalance());
+                        } catch (Exception e) {
+                            System.out.println("Something went wrong during deposit: " + e.getMessage());
                         }
-                    } catch (Exception e) {
-                        System.out.println("Something happened while trying to record transaction: " + e.getMessage());
+                    });
+
+                    depositThread.start();
+
+                    try {
+                        depositThread.join();
+                    } catch (InterruptedException e) {
+                        Thread.currentThread().interrupt();
+                        System.out.println("Deposit thread interrupted.");
+                    }
+
+                    break;
+
+                case 3:
+                    System.out.print("Please enter your pin: ");
+                    String wtPin = sc.next();
+
+                    String enteredPinHash = HashUtil.hashPin(wtPin);
+
+                    if (enteredPinHash != null && enteredPinHash.equals(user.getPin())) {
+                        System.out.print("Enter amount to withdraw: ");
+                        double withdrawAmount = sc.nextDouble();
+
+                        Thread withdrawThread = new Thread(() -> {
+                            try {
+                                acc.withdraw(withdrawAmount);
+
+                                Transaction tx2 = new Transaction(
+                                        withdrawAmount,
+                                        user.getUsername(),
+                                        TransactionType.DEBIT,
+                                        acc.getBalance(),
+                                        TransactionStatus.SUCCESS
+                                );
+
+                                jsonHandler.updateUser(user.getUsername(), acc.getBalance());
+                                jsonHandler.saveToFile(tx2);
+
+                                System.out.println("Withdrawal successful. New balance: " + acc.getBalance());
+                            } catch (Exception e) {
+                                System.out.println("Something happened while trying to record transaction: " + e.getMessage());
+                            }
+                        });
+
+                        withdrawThread.start();
+
+                        try {
+                            withdrawThread.join();
+                        } catch (InterruptedException e) {
+                            Thread.currentThread().interrupt();
+                            System.out.println("Withdraw thread interrupted.");
+                        }
+                    } else {
+                        System.out.println("Invalid pin, please try again");
                     }
                     break;
 

@@ -9,7 +9,7 @@ public class BankAccount {
         this.balance = balance;
     }
 
-    public void deposit(double amount) {
+    public synchronized void deposit(double amount) {
         if (amount > 0) {
             balance += amount;
             System.out.println(amount + " successfully deposited");
@@ -18,7 +18,7 @@ public class BankAccount {
         }
     }
 
-    public void withdraw(double amount) {
+    public synchronized void withdraw(double amount) {
         if (amount > balance) {
             System.out.println("Insufficient balance: " + balance + " please top up");
         }else if(amount <= 0){
@@ -29,7 +29,7 @@ public class BankAccount {
         }
     }
 
-    public double getBalance() {
+    public synchronized double getBalance() {
         return balance;
     }
 

@@ -30,4 +30,28 @@
   "balance" : 5500.0,
   "status" : "SUCCESS",
   "createdAt" : "2026-03-30 11:47:59 am"
+}, {
+  "transactionID" : "0cbdf487-7880-4aaf-9cff-e3f527d8a6c4",
+  "amount" : 400.0,
+  "user" : "Alonsome",
+  "type" : "DEBIT",
+  "balance" : 6000.0,
+  "status" : "SUCCESS",
+  "createdAt" : "2026-03-31 02:56:35 pm"
+}, {
+  "transactionID" : "0f3938be-e779-447a-a334-2e2b2c8689a3",
+  "amount" : 500.0,
+  "user" : "Emosnola",
+  "type" : "CREDIT",
+  "balance" : 6000.0,
+  "status" : "SUCCESS",
+  "createdAt" : "2026-03-31 03:01:47 pm"
+}, {
+  "transactionID" : "49376378-0738-4314-af4a-d053cedfda57",
+  "amount" : 500.0,
+  "user" : "Emosnola",
+  "type" : "DEBIT",
+  "balance" : 5500.0,
+  "status" : "SUCCESS",
+  "createdAt" : "2026-03-31 03:02:34 pm"
 } ]
